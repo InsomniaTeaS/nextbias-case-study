@@ -10,46 +10,46 @@ const groups = [
   { name: "CORTIS", type: "boy", generation: "5", moods: ["hip-hop", "experimental"], summary: "A creator-led group built around self-production, youthful energy, and hip-hop influences." }
 ];
 
+const generationLabels = {
+  "3": "3rd gen",
+  "4": "4th gen",
+  "5": "5th gen"
+};
+
 function selectedValue(name) {
   return document.querySelector(`input[name="${name}"]:checked`).value;
 }
 
-function scoreGroup(group, filters) {
-  let score = 0;
-  const reasons = [];
-
-  if (filters.type !== "any" && group.type !== filters.type) return null;
-  if (filters.generation !== "any" && group.generation !== filters.generation) return null;
-
-  if (filters.type !== "any") reasons.push(`${filters.type} group`);
-  if (filters.generation !== "any") {
-    const label = { "3": "3rd gen", "4": "4th gen", "5": "5th gen" }[filters.generation];
-    reasons.push(label);
-  }
-
-  if (group.moods.includes(filters.mood)) {
-    score += 5;
-    reasons.push(filters.mood);
-  }
-
-  return { group, score, reasons };
-}
-
 function findMatch(filters) {
-  return groups
-    .map(group => scoreGroup(group, filters))
-    .filter(Boolean)
-    .sort((a, b) => b.score - a.score || a.group.name.localeCompare(b.group.name))[0];
+  const matches = groups.filter(group => {
+    if (filters.type !== "any" && group.type !== filters.type) return false;
+    if (filters.generation !== "any" && group.generation !== filters.generation) return false;
+    return group.moods.includes(filters.mood);
+  });
+
+  return matches.sort((a, b) => a.name.localeCompare(b.name))[0] ?? null;
 }
 
-function renderMatch(match) {
+function renderMatch(group, filters) {
   const result = document.querySelector("#result");
-  const reasons = match.reasons.length ? match.reasons.join(", ") : "overall fit";
+
+  if (!group) {
+    result.innerHTML = `
+      <h3>No exact sample match</h3>
+      <p>Try a different group type, mood, or generation.</p>
+    `;
+    result.hidden = false;
+    return;
+  }
+
+  const reasons = [filters.mood];
+  if (filters.type !== "any") reasons.push(`${filters.type} group`);
+  if (filters.generation !== "any") reasons.push(generationLabels[filters.generation]);
 
   result.innerHTML = `
-    <h3>${match.group.name}</h3>
-    <strong>Why it matched:</strong> ${reasons}
-    <p>${match.group.summary}</p>
+    <h3>${group.name}</h3>
+    <strong>Why it matched:</strong> ${reasons.join(", ")}
+    <p>${group.summary}</p>
   `;
   result.hidden = false;
 }
@@ -61,5 +61,5 @@ document.querySelector("#match-button").addEventListener("click", () => {
     generation: selectedValue("generation")
   };
 
-  renderMatch(findMatch(filters));
+  renderMatch(findMatch(filters), filters);
 });
