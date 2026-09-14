@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NextBias Finder Demo</title>
+  <meta name="description" content="Simple NextBias group finder demo.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <p class="eyebrow">NEXTBIAS</p>
+      <h1>Find a K-pop group from a few preferences.</h1>
+      <p class="intro">Choose a few preferences to get a group match.</p>
+    </header>
+
+    <section class="finder" aria-labelledby="finder-title">
+      <h2 id="finder-title">Group finder</h2>
+
+      <fieldset>
+        <legend>1. Group type</legend>
+        <div class="choices">
+          <label><input type="radio" name="type" value="any" checked> Any</label>
+          <label><input type="radio" name="type" value="girl"> Girl group</label>
+          <label><input type="radio" name="type" value="boy"> Boy group</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Sound or mood</legend>
+        <div class="choices">
+          <label><input type="radio" name="mood" value="bright" checked> Bright</label>
+          <label><input type="radio" name="mood" value="dark"> Dark</label>
+          <label><input type="radio" name="mood" value="emotional"> Emotional</label>
+          <label><input type="radio" name="mood" value="hip-hop"> Hip-hop</label>
+          <label><input type="radio" name="mood" value="experimental"> Experimental</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Generation</legend>
+        <div class="choices">
+          <label><input type="radio" name="generation" value="any" checked> Any</label>
+          <label><input type="radio" name="generation" value="3"> 3rd gen</label>
+          <label><input type="radio" name="generation" value="4"> 4th gen</label>
+          <label><input type="radio" name="generation" value="5"> 5th gen</label>
+        </div>
+      </fieldset>
+
+      <button id="match-button" type="button">Reveal my match</button>
+      <article id="result" class="result" aria-live="polite" hidden></article>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

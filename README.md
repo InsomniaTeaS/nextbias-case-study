@@ -6,7 +6,7 @@ NextBias is a K-pop discovery website I built to help people find groups and lea
 
 **Live site:** [nextbias.com](https://nextbias.com)
 
-![NextBias](assets/nextbias-showcase.png)
+![NextBias](assets/nextbias-showcase.jpg)
 
 ## What I worked on
 

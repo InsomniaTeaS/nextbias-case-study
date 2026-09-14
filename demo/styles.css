@@ -1,0 +1,34 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f7f7fb;
+  background: #0d0b17;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, #22143c 0, #0d0b17 42%); }
+button, input { font: inherit; }
+.shell { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 72px 0; }
+.hero { max-width: 720px; margin-bottom: 36px; }
+.eyebrow { color: #d8a7ff; font-size: .78rem; letter-spacing: .14em; font-weight: 800; }
+h1 { font-size: clamp(2.4rem, 7vw, 4.8rem); line-height: .98; margin: 12px 0 18px; }
+.intro { color: #c6c0d3; line-height: 1.65; max-width: 620px; }
+.finder { background: rgba(23, 19, 38, .9); border: 1px solid #40365c; border-radius: 24px; padding: 28px; box-shadow: 0 24px 70px rgba(0, 0, 0, .35); }
+.finder h2 { margin-top: 0; }
+fieldset { border: 0; padding: 0; margin: 28px 0; }
+legend { font-weight: 800; margin-bottom: 12px; }
+.choices { display: flex; flex-wrap: wrap; gap: 10px; }
+.choices label { border: 1px solid #4e4566; border-radius: 999px; padding: 10px 14px; cursor: pointer; background: #171322; }
+.choices label:has(input:checked) { border-color: #dc54ff; background: #2b1740; }
+.choices input { accent-color: #dc54ff; }
+button { border: 0; border-radius: 999px; padding: 13px 20px; background: linear-gradient(90deg, #8b5cf6, #ec4899); color: white; font-weight: 800; cursor: pointer; }
+button:focus-visible, .choices label:has(input:focus-visible) { outline: 3px solid white; outline-offset: 3px; }
+.result { margin-top: 24px; padding: 22px; border-radius: 18px; background: #110f1b; border: 1px solid #4e4566; }
+.result h3 { margin: 0 0 8px; font-size: 1.6rem; }
+.result p { margin-bottom: 0; color: #cfc9d9; line-height: 1.55; }
+@media (max-width: 600px) {
+  .shell { padding: 44px 0; }
+  .finder { padding: 20px; }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; }
+  .choices label { text-align: center; }
+}
